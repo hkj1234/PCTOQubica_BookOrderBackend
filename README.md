@@ -1,10 +1,17 @@
 Book-Order (Backend)
 ============
 
+A complete system for managing an online library, integrating several key features for customers and system security.
+The code is fully written in C#.
+
 ## Get started
 
-Follow the [Getting Started](https://learn.microsoft.com/aspnet/core/getting-started) instructions.
+You can download the .zip package directly, then unzip it and start the project by double-clicking on FinalProject.sln (need visual studio installed).
 
-Also check out the [.NET Homepage](https://www.microsoft.com/net) for released versions of .NET, getting started guides, and learning resources.
+## Code explanation
 
-See the [Triage Process](https://github.com/dotnet/aspnetcore/blob/main/docs/TriageProcess.md) document for more information on how we handle incoming issues.
+A simple explanation to make it clear what the code does:
+* Customers: Customers can register and log in using JSON Web Tokens (JWT). This authentication method ensures that only authorized users can access the system’s features.
+* Books: Customers can view a catalog of books, search by title or author, and add new books. This allows for a dynamic and up-to-date management of the bookstore’s catalog.
+* Order: Users can place orders and view their order history. This feature enables customers to keep track of their purchases and manage their orders efficiently.
+* Security: I have implemented API protection with JWT authentication, ensuring that all communications between the client and server are secure and protected from unauthorized access.
