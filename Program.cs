@@ -3,7 +3,8 @@ using System.Text;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using FinalProject.Models;
+using FinalProject;
+using FinalProject.Controllers.Customer;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,6 +37,10 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             IssuerSigningKey = new SymmetricSecurityKey(key),
         };
     });
+
+//DE
+builder.Services
+    .AddCustomer();
 
 var app = builder.Build();
 
