@@ -21,7 +21,7 @@ namespace FinalProject.Core.Customer
         }
         public async Task RegisterAsync(CustomerRegister model)
         {
-            if (model.Password == model.VerifyPassword)
+            if (model.Password != model.VerifyPassword)
             {
                 throw new WrongEmailOrPasswordException();
             }

@@ -51,6 +51,8 @@ namespace FinalProject.Controllers.Customer.Controllers
         [HttpPost("Register")]
         [SwaggerResponse(StatusCodes.Status200OK, null, null)]
         [SwaggerResponse(StatusCodes.Status404NotFound, null, null)]
+        [SwaggerResponse(StatusCodes.Status400BadRequest, null, null)]
+        [SwaggerResponse(StatusCodes.Status409Conflict, null, null)]
         public async Task<IActionResult> RegisterAsync(CustomerRegisterRequest model)
         {
             try

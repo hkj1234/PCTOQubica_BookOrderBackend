@@ -5,6 +5,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using FinalProject;
 using FinalProject.Controllers.Customer;
+using FinalProject.Controllers.Book;
+using FinalProject.Database.Book.Entities;
+using FinalProject.Database.Context;
+using FinalProject.Controllers.Order;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -40,7 +44,10 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 //DE
 builder.Services
-    .AddCustomer();
+    .AddCustomer()
+    .AddBook()
+    .AddContext()
+    .AddOrder();
 
 var app = builder.Build();
 

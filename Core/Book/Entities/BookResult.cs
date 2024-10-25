@@ -1,23 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace FinalProject.Controllers.Book.Entities
+namespace FinalProject.Core.Book.Entities
 {
-    public class BookDB
-    {
-        [Key]
-        public int Id { get; set; }
-        public string Title { get; set; }
-
-        [ForeignKey("Author")]
-        public int AuthorId { get; set; }
-        public Author Author { get; set; }
-
-        [ForeignKey("BookCategory")]
-        public int CategoryId { get; set; }
-        public BookCategory BookCategory { get; set; }
-    }
-
     public class BookResult
     {
         public int Id { get; set; }
