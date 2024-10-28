@@ -180,8 +180,7 @@ namespace FinalProjectNUnitTest
             };
             var manager = new OrderManager(_mockOrdersRepository.Object, _mockBookCategoriesRepository.Object, _mockCustomersRepository.Object);
             _mockCustomersRepository.Setup(x => x.ExistCustomer(email)).ReturnsAsync(true);
-            //cmabiato
-            _mockBookCategoriesRepository.Setup(x => x.ExistBookCategories(1)).ReturnsAsync(false);
+            _mockBookCategoriesRepository.Setup(x => x.ExistBookCategories(1)).ReturnsAsync(true);
             _mockOrdersRepository.Setup(x => x.PostOrderAsync(email, orderToCreate)).Returns(Task.CompletedTask);
 
             async Task Act()
