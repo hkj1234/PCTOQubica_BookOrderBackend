@@ -32,7 +32,7 @@ jobs:
         if: success()
         run: |
           dotnet publish -c Release -o output
-          zip -r output.zip output
+          Compress-Archive -Path output -DestinationPath output.zip
         continue-on-error: false
 
       - name: Upload ZIP artifact
