@@ -12,12 +12,12 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v2
         with:
-          dotnet-version: '8.0'
+          dotnet-version: '8.x'
 
       - name: Restore dependencies
         run: dotnet restore
@@ -32,12 +32,12 @@ jobs:
         if: success()
         run: |
           dotnet publish -c Release -o output
-          zip -r output.zip output
+          Compress-Archive -Path output -DestinationPath output.zip
         continue-on-error: false
 
       - name: Upload ZIP artifact
         if: success()
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: build-artifact
           path: output.zip
