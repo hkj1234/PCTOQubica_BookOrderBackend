@@ -44,9 +44,9 @@ namespace FinalProject.Database.Book
                         AuthorName = p.Author.AuthorName,
                         BookCategory = p.BookCategory.CategoryName
                     })
-                    .Where(p => b.AuthorName == "" || p.AuthorName.Contains(b.AuthorName))
-                    .Where(p => b.Title == "" || p.Title.Contains(b.Title))
-                    .Where(p => b.BookCategory == "" || p.BookCategory.Contains(b.BookCategory))
+                    .Where(p => string.IsNullOrEmpty(b.AuthorName) || p.AuthorName.Contains(b.AuthorName))
+                    .Where(p => string.IsNullOrEmpty(b.Title) || p.Title.Contains(b.Title))
+                    .Where(p => string.IsNullOrEmpty(b.BookCategory) || p.BookCategory.Contains(b.BookCategory))
                     .ToListAsync();
         }
         public async Task PostBookAsync(BookToUpdate b)
