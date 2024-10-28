@@ -1,0 +1,43 @@
+name: Build and Test
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  build:
+    runs-on: windows-latest  
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: '8.0'
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
+
+      - name: Run unit tests
+        run: dotnet test --no-build --verbosity normal
+
+      - name: Publish artifacts
+        if: success()
+        run: |
+          dotnet publish -c Release -o output
+          zip -r output.zip output
+        continue-on-error: false
+
+      - name: Upload ZIP artifact
+        if: success()
+        uses: actions/upload-artifact@v2
+        with:
+          name: build-artifact
+          path: output.zip
