@@ -1,5 +1,7 @@
 ﻿using FinalProject.Core.Customer;
 using FinalProject.Core.Customer.Interfaces;
+using FinalProject.Core.JWT;
+using FinalProject.Core.JWT.Interfaces;
 using FinalProject.Database.Customer;
 
 namespace FinalProject.Controllers.Customer
@@ -10,6 +12,7 @@ namespace FinalProject.Controllers.Customer
         {
             services.AddScoped<ICustomerManager, CustomerManager>();
             services.AddScoped<ICustomersRepository, CustomersRepository>();
+            services.AddScoped<IJWTManager, JWTManager>();
             return services;
         }
     }

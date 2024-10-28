@@ -5,18 +5,18 @@ using Microsoft.Extensions.Configuration;
 using FinalProject.Core.Customer.Entities;
 using FinalProject.Core.Customer.Exceptions;
 using FinalProject.Database.Customer.Entities;
-using FinalProject;
+using FinalProject.Core.JWT.Interfaces;
 
 namespace FinalProjectNUnitTest
 {
     public class CustomerManagerTest
     {
-        private readonly Mock<IConfiguration> _mockConfiguration;
+        private readonly Mock<IJWTManager> _mockJWTManager;
         private readonly Mock<ICustomersRepository> _mockCustomersRepository;
         public CustomerManagerTest()
         {
             _mockCustomersRepository = new Mock<ICustomersRepository>(MockBehavior.Strict);
-            _mockConfiguration = new Mock<IConfiguration>(MockBehavior.Strict);
+            _mockJWTManager = new Mock<IJWTManager>(MockBehavior.Strict);
         }
 
         [Test]
@@ -28,7 +28,7 @@ namespace FinalProjectNUnitTest
                 Password = "test",
                 VerifyPassword = "wrong"
             };
-            var manager = new CustomerManager(_mockConfiguration.Object, _mockCustomersRepository.Object);
+            var manager = new CustomerManager(_mockJWTManager.Object, _mockCustomersRepository.Object);
 
             async Task Act()
             {
@@ -47,7 +47,7 @@ namespace FinalProjectNUnitTest
                 Password = "test",
                 VerifyPassword = "test"
             };
-            var manager = new CustomerManager(_mockConfiguration.Object, _mockCustomersRepository.Object);
+            var manager = new CustomerManager(_mockJWTManager.Object, _mockCustomersRepository.Object);
             _mockCustomersRepository.Setup(x => x.ExistCustomer(ExistingEmailAccount.Email)).ReturnsAsync(true);
 
             async Task Act()
@@ -67,7 +67,7 @@ namespace FinalProjectNUnitTest
                 Password = "test",
                 VerifyPassword = "test"
             };
-            var manager = new CustomerManager(_mockConfiguration.Object, _mockCustomersRepository.Object);
+            var manager = new CustomerManager(_mockJWTManager.Object, _mockCustomersRepository.Object);
             _mockCustomersRepository.Setup(x => x.ExistCustomer(NewAccount.Email)).ReturnsAsync(false);
             _mockCustomersRepository.Setup(x => x.AddNewCustomer(NewAccount)).Returns(Task.CompletedTask);
 
@@ -87,7 +87,7 @@ namespace FinalProjectNUnitTest
                 Email = "notExisting",
                 Password = "test"
             };
-            var manager = new CustomerManager(_mockConfiguration.Object, _mockCustomersRepository.Object);
+            var manager = new CustomerManager(_mockJWTManager.Object, _mockCustomersRepository.Object);
             _mockCustomersRepository.Setup(x => x.FirstOrDefaultCustomer(notExistingAccount.Email)).ReturnsAsync(new DBCustomer());
 
             async Task Act()
@@ -106,7 +106,7 @@ namespace FinalProjectNUnitTest
                 Email = "test",
                 Password = "wrong"
             };
-            var manager = new CustomerManager(_mockConfiguration.Object, _mockCustomersRepository.Object);
+            var manager = new CustomerManager(_mockJWTManager.Object, _mockCustomersRepository.Object);
             _mockCustomersRepository.Setup(x => x.FirstOrDefaultCustomer(wrongPasswordAccount.Email)).ReturnsAsync(new DBCustomer
             {
                 Password = "test",
@@ -128,11 +128,12 @@ namespace FinalProjectNUnitTest
                 Email = "test",
                 Password = "test"
             };
-            var manager = new CustomerManager(_mockConfiguration.Object, _mockCustomersRepository.Object);
+            var manager = new CustomerManager(_mockJWTManager.Object, _mockCustomersRepository.Object);
             _mockCustomersRepository.Setup(x => x.FirstOrDefaultCustomer(SuccessAccount.Email)).ReturnsAsync(new DBCustomer
             {
                 Password = "test",
             });
+            _mockJWTManager.Setup(x => x.JWTGenerate(It.IsAny<string>())).Returns("test");
 
             async Task Act()
             {

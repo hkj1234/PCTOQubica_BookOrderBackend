@@ -158,3 +158,4 @@ C:\Users\kliao\Desktop\Progetti\FinalProjectNUnitTest\obj\Debug\net8.0\refint\Fi
 C:\Users\kliao\Desktop\Progetti\FinalProjectNUnitTest\obj\Debug\net8.0\FinalProjectManagerTest.pdb
 C:\Users\kliao\Desktop\Progetti\FinalProjectNUnitTest\obj\Debug\net8.0\FinalProjectManagerTest.genruntimeconfig.cache
 C:\Users\kliao\Desktop\Progetti\FinalProjectNUnitTest\obj\Debug\net8.0\ref\FinalProjectManagerTest.dll
+C:\Users\kliao\Desktop\Progetti\FinalProjectNUnitTest\obj\Debug\net8.0\FinalProjectManagerTest.sourcelink.json

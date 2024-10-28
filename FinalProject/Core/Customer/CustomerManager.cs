@@ -4,6 +4,7 @@ using System.Text;
 using FinalProject.Core.Customer.Entities;
 using FinalProject.Core.Customer.Exceptions;
 using FinalProject.Core.Customer.Interfaces;
+using FinalProject.Core.JWT.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -12,11 +13,11 @@ namespace FinalProject.Core.Customer
 {
     public class CustomerManager : ICustomerManager
     {
-        private readonly IConfiguration _configuration;
+        private readonly IJWTManager _jWTManager;
         private readonly ICustomersRepository _customersRepository;
-        public CustomerManager(IConfiguration configuration, ICustomersRepository customersRepository)
+        public CustomerManager(IJWTManager jWTManager, ICustomersRepository customersRepository)
         {
-            _configuration = configuration;
+            _jWTManager = jWTManager;
             _customersRepository = customersRepository;
         }
         public async Task RegisterAsync(CustomerRegister model)
@@ -40,34 +41,7 @@ namespace FinalProject.Core.Customer
                 throw new WrongEmailOrPasswordException();
             }
 
-            //legge la configurazione di TokenOptions
-            var tokenOptions = _configuration.GetSection("TokenOptions").Get<TokenOptions>();
-            //prende sicret
-            var key = Encoding.ASCII.GetBytes(tokenOptions.Secret);
-
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                //configurazione del JWT:
-                //utente
-                Subject = new ClaimsIdentity(new[]
-                {
-                new Claim(ClaimTypes.Name, model.Email)
-                }),
-                //Issuer: colui che ha creato il token
-                Issuer = tokenOptions.Issuer,
-                //Audience: chi utilizzera questo token, cioè quali sono server e API 
-                Audience = tokenOptions.Audience,
-                //scadenza
-                Expires = DateTime.UtcNow.AddDays(tokenOptions.ExpiryDays),
-                //algoritmo di generazione della firma, serve per controllare che la token hai creato tu
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-            };
-
-            //seguente codice è per creare token
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-
-            return tokenHandler.WriteToken(token);
+            return _jWTManager.JWTGenerate(model.Email);
         }
     }
 }
