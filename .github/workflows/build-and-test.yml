@@ -29,8 +29,7 @@ jobs:
         run: dotnet build --configuration Release --no-restore
 
       - name: Run unit tests
-        run: dotnet test --verbosity normal  # Rimosso --no-build
-
+        run: dotnet test --verbosity normal 
       - name: Publish artifacts
         if: success()
         run: |
