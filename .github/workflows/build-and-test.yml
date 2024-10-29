@@ -34,8 +34,10 @@ jobs:
       - name: Publish artifacts
         if: success()
         run: |
-          dotnet publish -c Release -o $project/output
-          Compress-Archive -Path output -DestinationPath output.zip
+          for project in $(ls -d */); do
+            dotnet publish $project -c Release -o $project/output
+            Compress-Archive -Path $project/output -DestinationPath $project/output.zip
+          done
 
       - name: Upload ZIP artifact
         if: success()
