@@ -34,7 +34,7 @@ jobs:
       - name: Publish artifacts
         if: success()
         run: |
-          dotnet publish -c Release -o output
+          dotnet publish -c Release -o $project/output
           Compress-Archive -Path output -DestinationPath output.zip
 
       - name: Upload ZIP artifact
@@ -46,7 +46,7 @@ jobs:
 
       - name: Upload coverage report to Codecov
         if: success()
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v4
         with:
           token: eb0ae00f-cbbf-4d52-97d2-9c060117122f
           files: TestResults/**/*.xml
