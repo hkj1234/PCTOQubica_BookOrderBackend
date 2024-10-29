@@ -47,7 +47,7 @@ namespace FinalProject.Controllers.Order.Controllers
         {
             try
             {
-                string? customerEmail = HttpContext.User.Identity.Name;
+                string? customerEmail = HttpContext?.User?.Identity?.Name;
                 await _orderManager.PostOrderAsync(customerEmail, orderToCreate.ToOrderToCreate());
                 return Ok();
             }

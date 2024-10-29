@@ -25,6 +25,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 // Configura JWT
 // Questo serve per contorllare se JWT è valido o no rispettando le seguente regole 
+#pragma warning disable 8602, 8604
 var tokenOptions = builder.Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 var key = Encoding.ASCII.GetBytes(tokenOptions.Secret);
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -41,6 +42,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             IssuerSigningKey = new SymmetricSecurityKey(key),
         };
     });
+#pragma warning restore 8602, 8604
 
 //DE
 builder.Services
