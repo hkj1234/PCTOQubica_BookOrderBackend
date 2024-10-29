@@ -1,3 +1,3 @@
-#coverage:
-#  exclude:
-#    - "**/Migrations/**/*"
+coverage:
+  exclude:
+    - "**/Migrations/**/*"
