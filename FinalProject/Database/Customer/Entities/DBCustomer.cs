@@ -7,6 +7,7 @@ namespace FinalProject.Database.Customer.Entities
     {
         [Key]
         public string? Email { get; set; }
+        [Required]
         public string? Password { get; set; }
     }
 }

@@ -9,13 +9,16 @@ namespace FinalProject.Database.Book.Entities
     {
         [Key]
         public int Id { get; set; }
+        [Required]
         public string? Title { get; set; }
 
         [ForeignKey("Author")]
+        [Required]
         public int AuthorId { get; set; }
         public DBAuthor? Author { get; set; }
 
         [ForeignKey("BookCategory")]
+        [Required]
         public int CategoryId { get; set; }
         public DBBookCategory? BookCategory { get; set; }
     }

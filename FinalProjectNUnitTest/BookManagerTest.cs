@@ -67,6 +67,8 @@ namespace FinalProjectNUnitTest
                 CategoryId = -1,
             };
             var manager = new BookManager(_mockBooksRepository.Object, _mockAuthorsRepository.Object, _mockBookCategoriesRepository.Object);
+            
+            
             _mockBookCategoriesRepository.Setup(x => x.ExistBookCategories(-1)).ReturnsAsync(false);
             _mockAuthorsRepository.Setup(x => x.ExistAuthors(1)).ReturnsAsync(true);
 

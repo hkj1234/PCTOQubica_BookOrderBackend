@@ -10,13 +10,16 @@ namespace FinalProject.Database.Order.Entities
     {
         [Key]
         public int Id { get; set; }
+        [Required]
         public int Amount { get; set; }
 
         [ForeignKey("Customer")]
+        [Required]
         public string? CustomerEmail { get; set; }
         public DBCustomer? Customer { get; set; }
 
         [ForeignKey("Book")]
+        [Required]
         public int BookId { get; set; }
         public DBBook? Book { get; set; }
         public DateTime OrderDateTime { get; set; }
