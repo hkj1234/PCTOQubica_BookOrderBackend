@@ -14,11 +14,11 @@ namespace FinalProject.Database.Order.Entities
 
         [ForeignKey("Customer")]
         public string? CustomerEmail { get; set; }
-        public DBCustomer Customer { get; set; }
+        public DBCustomer? Customer { get; set; }
 
         [ForeignKey("Book")]
         public int BookId { get; set; }
-        public DBBook Book { get; set; }
+        public DBBook? Book { get; set; }
         public DateTime OrderDateTime { get; set; }
 
     }

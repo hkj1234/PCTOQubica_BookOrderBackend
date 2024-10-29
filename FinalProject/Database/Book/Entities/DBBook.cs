@@ -13,10 +13,10 @@ namespace FinalProject.Database.Book.Entities
 
         [ForeignKey("Author")]
         public int AuthorId { get; set; }
-        public DBAuthor Author { get; set; }
+        public DBAuthor? Author { get; set; }
 
         [ForeignKey("BookCategory")]
         public int CategoryId { get; set; }
-        public DBBookCategory BookCategory { get; set; }
+        public DBBookCategory? BookCategory { get; set; }
     }
 }

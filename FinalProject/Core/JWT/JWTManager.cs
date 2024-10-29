@@ -16,10 +16,14 @@ namespace FinalProject.Core.JWT
         }
         public string? JWTGenerate(string? data)
         {
+            if (string.IsNullOrEmpty(data))
+            {
+                return null;
+            }
             //legge la configurazione di TokenOptions
             var tokenOptions = _configuration.GetSection("TokenOptions").Get<TokenOptions>();
             //prende sicret
-            var key = Encoding.ASCII.GetBytes(tokenOptions.Secret);
+            var key = Encoding.ASCII.GetBytes(string.IsNullOrEmpty(tokenOptions?.Secret)?"NotSecret":tokenOptions.Secret);
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {
@@ -30,11 +34,11 @@ namespace FinalProject.Core.JWT
                 new Claim(ClaimTypes.Name, data)
                 }),
                 //Issuer: colui che ha creato il token
-                Issuer = tokenOptions.Issuer,
+                Issuer = tokenOptions?.Issuer,
                 //Audience: chi utilizzera questo token, cioè quali sono server e API 
-                Audience = tokenOptions.Audience,
+                Audience = tokenOptions?.Audience,
                 //scadenza
-                Expires = DateTime.UtcNow.AddDays(tokenOptions.ExpiryDays),
+                Expires = DateTime.UtcNow.AddDays(tokenOptions == null ? '1' : tokenOptions.ExpiryDays),
                 //algoritmo di generazione della firma, serve per controllare che la token hai creato tu
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };

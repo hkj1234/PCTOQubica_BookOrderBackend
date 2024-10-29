@@ -33,7 +33,7 @@ namespace FinalProject.Core.Customer
 
             await _customersRepository.AddNewCustomer(model);
         }
-        public async Task<string> LoginAsync(CustomerLogin model)
+        public async Task<string?> LoginAsync(CustomerLogin model)
         {
             var customer = await _customersRepository.FirstOrDefaultCustomer(model.Email);
             if (customer == null || customer.Password != model.Password)

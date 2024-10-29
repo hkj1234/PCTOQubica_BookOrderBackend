@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Diagnostics.CodeAnalysis;
+using Microsoft.EntityFrameworkCore;
 
 namespace FinalProject.Database.Context
 {
@@ -9,6 +10,7 @@ namespace FinalProject.Database.Context
         {
             _configuration = configuration;
         }
+
         public async Task<ApplicationDbContext> CreateDbContext()
         {
             var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
