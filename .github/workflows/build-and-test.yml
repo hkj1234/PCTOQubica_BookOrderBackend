@@ -19,6 +19,9 @@ jobs:
         with:
           dotnet-version: '8.x'
 
+      - name: Clean previous builds
+        run: dotnet clean
+
       - name: Restore dependencies
         run: dotnet restore
 
@@ -26,14 +29,13 @@ jobs:
         run: dotnet build --configuration Release --no-restore
 
       - name: Run unit tests
-        run: dotnet test --no-build --verbosity normal
+        run: dotnet test --verbosity normal  # Rimosso --no-build
 
       - name: Publish artifacts
         if: success()
         run: |
           dotnet publish -c Release -o output
           Compress-Archive -Path output -DestinationPath output.zip
-        continue-on-error: false
 
       - name: Upload ZIP artifact
         if: success()
