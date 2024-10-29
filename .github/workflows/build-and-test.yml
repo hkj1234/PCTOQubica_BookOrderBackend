@@ -35,7 +35,9 @@ jobs:
         if: success()
         run: |
           mkdir output
-          dotnet publish -c Release -o output/PCTOQubica_BookOrderBackend
+          for proj in $(find . -name '*.csproj'); do
+            dotnet publish "$proj" -c Release -o output/$(basename "$proj" .csproj)
+          done
           Compress-Archive -Path output/* -DestinationPath output.zip
 
       - name: Upload ZIP artifact
