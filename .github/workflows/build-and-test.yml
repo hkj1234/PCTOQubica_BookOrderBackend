@@ -34,8 +34,9 @@ jobs:
       - name: Publish artifacts
         if: success()
         run: |
-          dotnet publish -c Release
-          Compress-Archive -Path output -DestinationPath output.zip
+          mkdir output
+          dotnet publish -c Release -o output/PCTOQubica_BookOrderBackend
+          Compress-Archive -Path output/* -DestinationPath output.zip
 
       - name: Upload ZIP artifact
         if: success()
