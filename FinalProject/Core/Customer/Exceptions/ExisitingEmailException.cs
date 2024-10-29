@@ -6,7 +6,7 @@
         {
         }
 
-        public ExisitingEmailException(string message) : base(message)
+        public ExisitingEmailException(string? message) : base(message)
         {
         }
     }

@@ -34,7 +34,7 @@ namespace FinalProject.Controllers.Order.Controllers
         [SwaggerResponse(StatusCodes.Status404NotFound, null, null)]
         public async Task<IActionResult> GetPesonalOrdersAsync()
         {
-            string customerEmail = HttpContext.User.Identity.Name;
+            string? customerEmail = HttpContext.User.Identity.Name;
             return Ok(await _orderManager.GetPesonalOrdersAsync(customerEmail));
         }
 
@@ -47,7 +47,7 @@ namespace FinalProject.Controllers.Order.Controllers
         {
             try
             {
-                string customerEmail = HttpContext.User.Identity.Name;
+                string? customerEmail = HttpContext.User.Identity.Name;
                 await _orderManager.PostOrderAsync(customerEmail, orderToCreate.ToOrderToCreate());
                 return Ok();
             }

@@ -6,8 +6,8 @@ namespace FinalProject.Controllers.Customer.Entities
 {
     public class CustomerLoginRequest
     {
-        public string Email { get; set; }
-        public string Password { get; set; }
+        public string? Email { get; set; }
+        public string? Password { get; set; }
         public CustomerLogin ToCoreCustomerLogin()
         {
             return new CustomerLogin()
@@ -20,9 +20,9 @@ namespace FinalProject.Controllers.Customer.Entities
 
     public class CustomerRegisterRequest
     {
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public string VerifyPassword { get; set; }
+        public string? Email { get; set; }
+        public string? Password { get; set; }
+        public string? VerifyPassword { get; set; }
         public CustomerRegister ToCoreCustomerRegister()
         {
             return new CustomerRegister()

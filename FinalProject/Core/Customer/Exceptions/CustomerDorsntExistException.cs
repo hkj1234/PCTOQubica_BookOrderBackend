@@ -6,7 +6,7 @@
         {
         }
 
-        public CustomerDorsntExistException(string message) : base(message)
+        public CustomerDorsntExistException(string? message) : base(message)
         {
         }
     }

@@ -13,7 +13,7 @@ namespace FinalProject.Database.Order.Entities
         public int Amount { get; set; }
 
         [ForeignKey("Customer")]
-        public string CustomerEmail { get; set; }
+        public string? CustomerEmail { get; set; }
         public DBCustomer Customer { get; set; }
 
         [ForeignKey("Book")]

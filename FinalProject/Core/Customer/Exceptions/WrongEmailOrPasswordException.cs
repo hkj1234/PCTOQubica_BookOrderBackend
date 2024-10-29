@@ -6,7 +6,7 @@
         {
         }
 
-        public WrongEmailOrPasswordException(string message) : base(message)
+        public WrongEmailOrPasswordException(string? message) : base(message)
         {
         }
     }

@@ -58,7 +58,7 @@ namespace FinalProjectNUnitTest
         [Test]
         public void GetPesonalOrdersAsyncWithNullId()
         {
-            string email = null;
+            string? email = null;
             var manager = new OrderManager(_mockOrdersRepository.Object, _mockBookCategoriesRepository.Object, _mockCustomersRepository.Object);
 
             async Task Act()

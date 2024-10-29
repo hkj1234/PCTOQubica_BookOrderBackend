@@ -14,7 +14,7 @@ namespace FinalProject.Core.JWT
         {
             _configuration = configuration;
         }
-        public string JWTGenerate(string data)
+        public string? JWTGenerate(string? data)
         {
             //legge la configurazione di TokenOptions
             var tokenOptions = _configuration.GetSection("TokenOptions").Get<TokenOptions>();

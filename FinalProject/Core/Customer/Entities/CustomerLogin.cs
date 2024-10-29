@@ -6,8 +6,8 @@ namespace FinalProject.Core.Customer.Entities
 {
     public class CustomerLogin
     {
-        public string Email { get; set; }
-        public string Password { get; set; }
+        public string? Email { get; set; }
+        public string? Password { get; set; }
         public CustomerLogin() { }
         public CustomerLogin(CustomerRegister reg)
         {
@@ -18,8 +18,8 @@ namespace FinalProject.Core.Customer.Entities
 
     public class CustomerRegister
     {
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public string VerifyPassword { get; set; }
+        public string? Email { get; set; }
+        public string? Password { get; set; }
+        public string? VerifyPassword { get; set; }
     }
 }

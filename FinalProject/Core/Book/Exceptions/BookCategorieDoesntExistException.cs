@@ -3,6 +3,6 @@
     public class BookCategorieDoesntExistException : Exception
     {
         public BookCategorieDoesntExistException() { }
-        public BookCategorieDoesntExistException(string message) : base(message) { }
+        public BookCategorieDoesntExistException(string? message) : base(message) { }
     }
 }

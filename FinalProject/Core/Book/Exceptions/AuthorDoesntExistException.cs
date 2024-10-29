@@ -3,6 +3,6 @@
     public class AuthorDoesntExistException : Exception
     {
         public AuthorDoesntExistException() { }
-        public AuthorDoesntExistException(string message) : base(message) { }
+        public AuthorDoesntExistException(string? message) : base(message) { }
     }
 }

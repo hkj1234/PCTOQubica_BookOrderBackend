@@ -14,7 +14,7 @@ namespace FinalProject.Database.Order
         {
             _dbContextFactory = dbContextFactory;
         }
-        public async Task<IEnumerable<OrderResult>> GetPesonalOrdersAsync(string customerEmail)
+        public async Task<IEnumerable<OrderResult>> GetPesonalOrdersAsync(string? customerEmail)
         {
             await using var _context = await _dbContextFactory.CreateDbContext();
 
@@ -36,7 +36,7 @@ namespace FinalProject.Database.Order
 
             return ris;
         }
-        public async Task PostOrderAsync(string customerEmail, OrderToCreate orderToCreate)
+        public async Task PostOrderAsync(string? customerEmail, OrderToCreate orderToCreate)
         {
             await using var _context = await _dbContextFactory.CreateDbContext();
             DBOrder ris = new DBOrder

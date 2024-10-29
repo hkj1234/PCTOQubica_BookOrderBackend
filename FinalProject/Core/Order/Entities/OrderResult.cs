@@ -13,9 +13,9 @@ namespace FinalProject.Core.Order.Entities
     }
     public class OrderResult
     {
-        public string BookName { get; set; }
-        public string BookCategory { get; set; }
-        public string AuthorName { get; set; }
+        public string? BookName { get; set; }
+        public string? BookCategory { get; set; }
+        public string? AuthorName { get; set; }
         public int Amount { get; set; }
         public DateTime OrderDateTime { get; set; }
     }

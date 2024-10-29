@@ -4,7 +4,7 @@ namespace FinalProject.Core.Order.Interfaces
 {
     public interface IOrdersRepository
     {
-        public Task<IEnumerable<OrderResult>> GetPesonalOrdersAsync(string customerEmail);
-        public Task PostOrderAsync(string customerEmail, OrderToCreate orderToCreate);
+        public Task<IEnumerable<OrderResult>> GetPesonalOrdersAsync(string? customerEmail);
+        public Task PostOrderAsync(string? customerEmail, OrderToCreate orderToCreate);
     }
 }

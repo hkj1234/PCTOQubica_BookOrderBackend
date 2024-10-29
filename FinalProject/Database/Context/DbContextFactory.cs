@@ -12,7 +12,7 @@ namespace FinalProject.Database.Context
         public async Task<ApplicationDbContext> CreateDbContext()
         {
             var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
-            var connectionString = _configuration.GetConnectionString("DefaultConnection");
+            var connectionstring? = _configuration.GetConnectionString("DefaultConnection");
 
             optionsBuilder
                 .UseSqlServer(connectionString);

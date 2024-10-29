@@ -23,12 +23,12 @@ namespace FinalProject.Core.Order
             _bookCategoriesRepository = bookCategoriesRepository;
             _customersRepository = customersRepository;
         }
-        public async Task<IEnumerable<OrderResult>> GetPesonalOrdersAsync(string customerEmail)
+        public async Task<IEnumerable<OrderResult>> GetPesonalOrdersAsync(string? customerEmail)
         {
             await CheckCustomerEmail(customerEmail);
             return await _ordersRepository.GetPesonalOrdersAsync(customerEmail);
         }
-        public async Task PostOrderAsync(string customerEmail, OrderToCreate orderToCreate)
+        public async Task PostOrderAsync(string? customerEmail, OrderToCreate orderToCreate)
         {
             await CheckCustomerEmail(customerEmail);
             if (orderToCreate.Amount <= 0)
@@ -38,7 +38,7 @@ namespace FinalProject.Core.Order
             await _ordersRepository.PostOrderAsync(customerEmail, orderToCreate);
         }
 
-        private async Task CheckCustomerEmail(string customerEmail)
+        private async Task CheckCustomerEmail(string? customerEmail)
         {
             if (customerEmail == null || ! await _customersRepository.ExistCustomer(customerEmail))
                 throw new CustomerDorsntExistException();
