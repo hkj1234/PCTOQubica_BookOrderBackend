@@ -35,9 +35,11 @@ jobs:
         if: success()
         run: |
           mkdir output
-          for proj in $(find . -name '*.csproj'); do
-            dotnet publish "$proj" -c Release -o output/$(basename "$proj" .csproj)
-          done
+          
+          Get-ChildItem -Recurse -Filter *.csproj | ForEach-Object {
+            dotnet publish $_.FullName -c Release -o output/$($_.BaseName)
+          }
+          
           Compress-Archive -Path output/* -DestinationPath output.zip
 
       - name: Upload ZIP artifact
