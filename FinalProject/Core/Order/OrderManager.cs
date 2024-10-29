@@ -25,23 +25,24 @@ namespace FinalProject.Core.Order
         }
         public async Task<IEnumerable<OrderResult>> GetPesonalOrdersAsync(string? customerEmail)
         {
-            await CheckCustomerEmail(customerEmail);
-            return await _ordersRepository.GetPesonalOrdersAsync(customerEmail);
+            string existingCustomerEmail = await CheckCustomerEmail(customerEmail);
+            return await _ordersRepository.GetPesonalOrdersAsync(existingCustomerEmail);
         }
         public async Task PostOrderAsync(string? customerEmail, OrderToCreate orderToCreate)
         {
-            await CheckCustomerEmail(customerEmail);
+            string existingCustomerEmail = await CheckCustomerEmail(customerEmail);
             if (orderToCreate.Amount <= 0)
                 throw new NegativeOrNullAmountException();
             if (! await _bookCategoriesRepository.ExistBookCategories(orderToCreate.BookId))
                 throw new BookCategorieDoesntExistException();
-            await _ordersRepository.PostOrderAsync(customerEmail, orderToCreate);
+            await _ordersRepository.PostOrderAsync(existingCustomerEmail, orderToCreate);
         }
 
-        private async Task CheckCustomerEmail(string? customerEmail)
+        private async Task<string> CheckCustomerEmail(string? customerEmail)
         {
-            if (customerEmail == null || ! await _customersRepository.ExistCustomer(customerEmail))
+            if (string.IsNullOrEmpty(customerEmail) || ! await _customersRepository.ExistCustomer(customerEmail))
                 throw new CustomerDorsntExistException();
+            return customerEmail;
         }
     }
 }

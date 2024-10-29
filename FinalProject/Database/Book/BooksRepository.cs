@@ -17,7 +17,7 @@ namespace FinalProject.Database.Book
         }
         public async Task<IEnumerable<BookResult>> GetBooksAsync()
         {
-            await using var _context = await _dbContextFactory.CreateDbContext();
+            await using var _context = _dbContextFactory.CreateDbContext();
             return await _context.Books
                 .Include(p => p.BookCategory)
                 .Include(p => p.Author)
@@ -33,7 +33,7 @@ namespace FinalProject.Database.Book
 
         public async Task<IEnumerable<BookResult>> GetBooksWithFilterAsync(BookResultWithoutId b)
         {
-            await using var _context = await _dbContextFactory.CreateDbContext();
+            await using var _context = _dbContextFactory.CreateDbContext();
             return await _context.Books
                     .Include(p => p.BookCategory)
                     .Include(p => p.Author)
@@ -51,7 +51,7 @@ namespace FinalProject.Database.Book
         }
         public async Task PostBookAsync(BookToUpdate b)
         {
-            await using var _context = await _dbContextFactory.CreateDbContext();
+            await using var _context = _dbContextFactory.CreateDbContext();
             DBBook newBook = new DBBook
             {
                 Title = b.Title,

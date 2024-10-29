@@ -2,6 +2,6 @@
 {
     public interface IDbContextFactory
     {
-        public Task<ApplicationDbContext> CreateDbContext();
+        public ApplicationDbContext CreateDbContext();
     }
 }

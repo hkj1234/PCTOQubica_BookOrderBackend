@@ -15,19 +15,24 @@ namespace FinalProject.Database.Customer
         {
             _dbContextFactory = dbContextFactory;
         }
-        public async Task<bool> ExistCustomer(string? email)
+        public async Task<bool> ExistCustomer(string email)
         {
-            await using var _context = await _dbContextFactory.CreateDbContext();
+            await using var _context = _dbContextFactory.CreateDbContext();
             return await _context.Customers.AnyAsync(x => x.Email == email);
         }
-        public async Task<DBCustomer> FirstOrDefaultCustomer(string? email)
+        public async Task<DBCustomer> FirstOrDefaultCustomer(string email)
         {
-            await using var _context = await _dbContextFactory.CreateDbContext();
-            return await _context.Customers.FirstOrDefaultAsync(x => x.Email == email);
+            await using var _context = _dbContextFactory.CreateDbContext();
+            DBCustomer? ris = await _context.Customers.FirstOrDefaultAsync(x => x.Email == email);
+            if (ris == null) 
+            {
+                ris = new DBCustomer();
+            }
+            return ris;
         }
         public async Task AddNewCustomer(CustomerRegister model)
         {
-            await using var _context = await _dbContextFactory.CreateDbContext();
+            await using var _context = _dbContextFactory.CreateDbContext();
             DBCustomer newCustomer = new DBCustomer
             {
                 Email = model.Email,

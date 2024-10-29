@@ -7,16 +7,16 @@ namespace FinalProject.Controllers.Book.Entities
     public class BookResultRequest
     {
         public int Id { get; set; }
-        public string? Title { get; set; }
-        public string? AuthorName { get; set; }
-        public string? BookCategory { get; set; }
+        public required string Title { get; set; }
+        public required string AuthorName { get; set; }
+        public required string BookCategory { get; set; }
     }
 
     public class BookResultWithoutIdRequest
     {
-        public string? Title { get; set; }
-        public string? AuthorName { get; set; }
-        public string? BookCategory { get; set; }
+        public required string Title { get; set; }
+        public required string AuthorName { get; set; }
+        public required string BookCategory { get; set; }
         public BookResultWithoutId ToBookResultWithoutId() {
             return new BookResultWithoutId
             {
@@ -29,7 +29,7 @@ namespace FinalProject.Controllers.Book.Entities
 
     public class BookToUpdateRequest
     {
-        public string? Title { get; set; }
+        public required string Title { get; set; }
         public int AuthorId { get; set; }
         public int CategoryId { get; set; }
         public BookToUpdate ToBookToUpdate()

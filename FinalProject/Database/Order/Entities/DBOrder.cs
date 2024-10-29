@@ -15,13 +15,13 @@ namespace FinalProject.Database.Order.Entities
 
         [ForeignKey("Customer")]
         [Required]
-        public string? CustomerEmail { get; set; }
-        public DBCustomer? Customer { get; set; }
+        public required string CustomerEmail { get; set; }
+        public DBCustomer Customer { get; set; } = new DBCustomer();
 
         [ForeignKey("Book")]
         [Required]
         public int BookId { get; set; }
-        public DBBook? Book { get; set; }
+        public DBBook Book { get; set; } = new DBBook();
         public DateTime OrderDateTime { get; set; }
 
     }

@@ -6,6 +6,6 @@ namespace FinalProject.Core.Book.Entities
     {
         [Key]
         public int Id { get; set; }
-        public string? AuthorName { get; set; }
+        public required string AuthorName { get; set; }
     }
 }

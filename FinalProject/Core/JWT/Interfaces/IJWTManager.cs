@@ -2,6 +2,6 @@
 {
     public interface IJWTManager
     {
-        public string? JWTGenerate(string? data);
+        public string JWTGenerate(string data);
     }
 }

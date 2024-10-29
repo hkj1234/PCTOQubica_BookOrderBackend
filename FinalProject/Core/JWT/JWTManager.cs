@@ -14,12 +14,8 @@ namespace FinalProject.Core.JWT
         {
             _configuration = configuration;
         }
-        public string? JWTGenerate(string? data)
+        public string JWTGenerate(string data)
         {
-            if (string.IsNullOrEmpty(data))
-            {
-                return null;
-            }
 #pragma warning disable 8602, 8604
             //legge la configurazione di TokenOptions
             var tokenOptions = _configuration.GetSection("TokenOptions").Get<TokenOptions>();

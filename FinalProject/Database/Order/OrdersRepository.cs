@@ -1,6 +1,7 @@
 ﻿using FinalProject.Core.Order.Entities;
 using FinalProject.Core.Order.Interfaces;
 using FinalProject.Database.Context;
+using FinalProject.Database.Customer.Entities;
 using FinalProject.Database.Order.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -14,15 +15,11 @@ namespace FinalProject.Database.Order
         {
             _dbContextFactory = dbContextFactory;
         }
-        public async Task<IEnumerable<OrderResult>> GetPesonalOrdersAsync(string? customerEmail)
+        public async Task<IEnumerable<OrderResult>> GetPesonalOrdersAsync(string customerEmail)
         {
-            await using var _context = await _dbContextFactory.CreateDbContext();
+            await using var _context = _dbContextFactory.CreateDbContext();
 
             var ris = await _context.Orders
-                .Include(x => x.Book)
-                .ThenInclude(x => x.Author)
-                .Include(x => x.Book)
-                .ThenInclude(x => x.BookCategory)
                 .Where(x => x.CustomerEmail == customerEmail)
                 .Select(x => new OrderResult
                 {
@@ -36,9 +33,9 @@ namespace FinalProject.Database.Order
 
             return ris;
         }
-        public async Task PostOrderAsync(string? customerEmail, OrderToCreate orderToCreate)
+        public async Task PostOrderAsync(string customerEmail, OrderToCreate orderToCreate)
         {
-            await using var _context = await _dbContextFactory.CreateDbContext();
+            await using var _context = _dbContextFactory.CreateDbContext();
             DBOrder ris = new DBOrder
             {
                 Amount = orderToCreate.Amount,

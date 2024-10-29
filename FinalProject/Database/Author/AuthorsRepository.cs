@@ -15,7 +15,7 @@ namespace FinalProject.Database.Author
         }
         public async Task<bool> ExistAuthors(int id)
         {
-            await using var _context = await _dbContextFactory.CreateDbContext();
+            await using var _context = _dbContextFactory.CreateDbContext();
             return await _context.Authors.AnyAsync(x => x.Id == id);
         }
     }

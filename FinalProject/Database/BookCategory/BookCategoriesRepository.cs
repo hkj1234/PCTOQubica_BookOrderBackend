@@ -13,7 +13,7 @@ namespace FinalProject.Database.BookCategory
         }
         public async Task<bool> ExistBookCategories(int id)
         {
-            await using var _context = await _dbContextFactory.CreateDbContext();
+            await using var _context = _dbContextFactory.CreateDbContext();
             return await _context.BookCategories.AnyAsync(x => x.Id == id);
         }
     }

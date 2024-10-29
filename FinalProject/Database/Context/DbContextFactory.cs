@@ -11,7 +11,7 @@ namespace FinalProject.Database.Context
             _configuration = configuration;
         }
 
-        public async Task<ApplicationDbContext> CreateDbContext()
+        public ApplicationDbContext CreateDbContext()
         {
             var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
             var connectionString = _configuration.GetConnectionString("DefaultConnection");

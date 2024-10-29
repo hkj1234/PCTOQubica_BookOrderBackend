@@ -6,21 +6,21 @@ namespace FinalProject.Core.Book.Entities
     public class BookResult
     {
         public int Id { get; set; }
-        public string? Title { get; set; }
-        public string? AuthorName { get; set; }
-        public string? BookCategory { get; set; }
+        public required string Title { get; set; }
+        public required string AuthorName { get; set; }
+        public required string BookCategory { get; set; }
     }
 
     public class BookResultWithoutId
     {
-        public string? Title { get; set; }
-        public string? AuthorName { get; set; }
-        public string? BookCategory { get; set; }
+        public required string Title { get; set; }
+        public required string AuthorName { get; set; }
+        public required string BookCategory { get; set; }
     }
 
     public class BookToUpdate
     {
-        public string? Title { get; set; }
+        public required string Title { get; set; }
         public int AuthorId { get; set; }
         public int CategoryId { get; set; }
     }
