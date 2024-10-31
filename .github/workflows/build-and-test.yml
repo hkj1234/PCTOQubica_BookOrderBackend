@@ -29,7 +29,7 @@ jobs:
         run: dotnet build --configuration Release --no-restore
 
       - name: Run unit tests with coverage
-        run: dotnet test --collect:"XPlat Code Coverage" --results-directory TestResult /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:ExcludeByFile="FinalProject\Database\Migrations\*.cs"
+        run: dotnet test --collect:"XPlat Code Coverage" --results-directory TestResult /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:Exclude=[FinalProject.Database.Migrations]*
 
       - name: List coverage files
         run: ls TestResult
