@@ -35,7 +35,7 @@ jobs:
         run: dotnet tool install --global dotnet-reportgenerator-globaltool
 
       - name: Generate coverage report
-        run: reportgenerator -reports:TestResult/**/*.xml -targetdir:coveragereport -reporttypes:Html
+        run: reportgenerator -reports:TestResult/**/*.xml -targetdir:coveragereport -reporttypes:TextSummary
 
       - name: Publish artifacts
         if: success()
