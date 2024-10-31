@@ -57,4 +57,4 @@ jobs:
           files: TestResults/**/*.xml
           flags: unittests
           name: code-coverage-report
-          exclude: "**/Migrations/*.cs"
+          exclude: "**/Migrations/**/*"
