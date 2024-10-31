@@ -1,10 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RunSettings>
   <DataCollectionRunSettings>
     <DataCollectors>
       <DataCollector friendlyName="XPlat Code Coverage">
         <Configuration>
           <Exclude>
-            <Module>.*[\\/]Migrations[\\/].*<Module> <!-- Escludi tutte le cartelle Migrations in qualsiasi livello -->
+            <Module>.*[\\/]Migrations[\\/].*</Module> <!-- Escludi tutte le cartelle Migrations -->
           </Exclude>
         </Configuration>
       </DataCollector>
