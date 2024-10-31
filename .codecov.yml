@@ -1,4 +1,0 @@
-ignore:
-  - 'FinalProject/Database/Migrations/*'
-  - '**/*Migration*'
-
