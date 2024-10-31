@@ -4,9 +4,9 @@
     <DataCollectors>
       <DataCollector friendlyName="XPlat Code Coverage">
         <Configuration>
-          <ExcludeByFile>
-            **/Migrations/*.cs
-          </ExcludeByFile>
+          <ExcludeByFile>**/Migrations/*.cs</ExcludeByFile>
+          <ExcludeByFile>**/Exceptions/*.cs</ExcludeByFile>
+          <ExcludeByFile>**/Entities/*.cs</ExcludeByFile>
         </Configuration>
       </DataCollector>
     </DataCollectors>
