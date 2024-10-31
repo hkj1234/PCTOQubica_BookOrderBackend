@@ -31,9 +31,6 @@ jobs:
       - name: Run unit tests with coverage
         run: dotnet test --collect:"XPlat Code Coverage" --results-directory TestResult --logger "trx;LogFileName=test_results.trx" --settings coverlet.runsettings 
 
-      - name: List TestResult directory
-        run: Get-ChildItem -Recurse -Path TestResult
-
       - name: Install ReportGenerator
         run: dotnet tool install --global dotnet-reportgenerator-globaltool
 
