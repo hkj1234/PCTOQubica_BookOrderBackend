@@ -9,16 +9,20 @@ namespace FinalProject.Core.JWT
 {
     public class JWTManager : IJWTManager
     {
-        private readonly IConfiguration _configuration;
-        public JWTManager(IConfiguration configuration)
+        private readonly IGetOptionManager _getOptionManager;
+        public JWTManager(IGetOptionManager getOptionManager)
         {
-            _configuration = configuration;
+            _getOptionManager = getOptionManager;
         }
-        public string JWTGenerate(string data)
+        public string JWTGenerate(string? data)
         {
+            if (string.IsNullOrEmpty(data))
+            {
+                throw new ArgumentNullException("data");
+            }
 #pragma warning disable 8602, 8604
             //legge la configurazione di TokenOptions
-            var tokenOptions = _configuration.GetSection("TokenOptions").Get<TokenOptions>();
+            var tokenOptions = _getOptionManager.GetTokenOptions();
             //prende sicret
             var key = Encoding.ASCII.GetBytes(tokenOptions.Secret);
 
@@ -47,5 +51,6 @@ namespace FinalProject.Core.JWT
 #pragma warning restore 8602, 8604
             return tokenHandler.WriteToken(token);
         }
+        
     }
 }

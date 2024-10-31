@@ -13,6 +13,7 @@ namespace FinalProject.Controllers.Customer
             services.AddScoped<ICustomerManager, CustomerManager>();
             services.AddScoped<ICustomersRepository, CustomersRepository>();
             services.AddScoped<IJWTManager, JWTManager>();
+            services.AddScoped<IGetOptionManager, GetOptionManager>();
             return services;
         }
     }
