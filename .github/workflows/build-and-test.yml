@@ -30,8 +30,6 @@ jobs:
 
       - name: Run unit tests with coverage
         run: dotnet test --collect:"XPlat Code Coverage" --results-directory TestResult /p:CollectCoverage=true /p:ExcludeByFile="**/*"
-      - name: List coverage files
-        run: ls TestResult
 
       - name: Publish artifacts
         if: success()
