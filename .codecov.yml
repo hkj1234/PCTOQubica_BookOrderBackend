@@ -1,12 +1,4 @@
-codecov:
-  # Token per l'autenticazione, se necessario
-  token: "${{ secrets.CODECOV_TOKEN }}"
+ignore:
+  - 'FinalProject/Database/Migrations/*'
+  - '**/*Migration*'
 
-  # Esclusioni
-  exclude:
-    - 'FinalProject/Database/Migrations/*'
-    - '**/*Migration*'
-
-  # Opzioni di reportistica
-  comment: true
-  coverage: true
