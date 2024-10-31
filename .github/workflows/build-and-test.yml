@@ -53,7 +53,7 @@ jobs:
         if: success()
         uses: codecov/codecov-action@v4
         with:
-          token: eb0ae00f-cbbf-4d52-97d2-9c060117122f
+          token: ${{ secrets.CODECOV_TOKEN }}
           files: TestResults/**/*.xml
           flags: unittests
           name: code-coverage-report
