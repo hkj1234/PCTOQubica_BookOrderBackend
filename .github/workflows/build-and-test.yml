@@ -57,4 +57,3 @@ jobs:
           files: TestResults/**/coverage.cobertura.xml
           flags: unittests
           name: code-coverage-report
-          exclude: "FinalProject/Database/Migrations/*"
