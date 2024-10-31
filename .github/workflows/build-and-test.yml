@@ -29,7 +29,10 @@ jobs:
         run: dotnet build --configuration Release --no-restore
 
       - name: Run unit tests with coverage
-        run: dotnet test --collect:"XPlat Code Coverage" --results-directory TestResult 
+        run: dotnet test --collect:"XPlat Code Coverage" --results-directory TestResult --logger:trx;LogFileName=test_results.trx --settings coverlet.runsettings 
+
+      - name: Generate coverage report
+        run: dotnet reportgenerator -reports:TestResult/coverage.cobertura.xml -targetdir:coveragereport -reporttypes:Html
 
       - name: Publish artifacts
         if: success()
@@ -54,6 +57,13 @@ jobs:
         uses: codecov/codecov-action@v4
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          files: TestResults/**/*.xml
+          files: TestResult/**/*.xml
           flags: unittests
           name: code-coverage-report
+
+      - name: Upload coverage report
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coveragereport/**
