@@ -5,9 +5,8 @@
       <DataCollector friendlyName="XPlat Code Coverage">
         <Configuration>
           <Exclude>
-            <!-- Escludi tutte le cartelle Migrations -->
             <Module>.*[\\/]Migrations[\\/].*</Module>
-            <Module>.*Migrations.*</Module>
+            <Module>.*Migrations.*</Module> <!-- Escludi tutti i moduli che contengono 'Migrations' -->
           </Exclude>
         </Configuration>
       </DataCollector>
