@@ -63,7 +63,7 @@ jobs:
         uses: codecov/codecov-action@v4
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          files: TestResult/*/coverage.cobertura.xml
+          files: TestResult/**/coverage.cobertura.xml
           flags: unittests
           name: coverage-report
 
