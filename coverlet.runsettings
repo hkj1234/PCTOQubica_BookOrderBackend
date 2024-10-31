@@ -4,10 +4,9 @@
     <DataCollectors>
       <DataCollector friendlyName="XPlat Code Coverage">
         <Configuration>
-          <Exclude>
-            <Module>.*[\\/]Migrations[\\/].*</Module>
-            <Module>.*Migrations.*</Module> <!-- Escludi tutti i moduli che contengono 'Migrations' -->
-          </Exclude>
+          <ExcludeByFile>
+            **/Migrations/*.cs
+          </ExcludeByFile>
         </Configuration>
       </DataCollector>
     </DataCollectors>
