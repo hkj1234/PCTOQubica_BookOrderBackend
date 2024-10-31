@@ -31,9 +31,12 @@ jobs:
       - name: Run unit tests with coverage
         run: dotnet test --collect:"XPlat Code Coverage" --results-directory TestResult --logger "trx;LogFileName=test_results.trx" --settings coverlet.runsettings 
 
+      - name: List TestResult directory
+        run: Get-ChildItem -Recurse -Path TestResult
+
       - name: Install ReportGenerator
-        run: dotnet tool install -g dotnet-reportgenerator-globaltool
-      
+        run: dotnet tool install --global dotnet-reportgenerator-globaltool
+
       - name: Generate coverage report
         run: reportgenerator -reports:TestResult/coverage.cobertura.xml -targetdir:coveragereport -reporttypes:Html
 
@@ -64,7 +67,7 @@ jobs:
           flags: unittests
           name: code-coverage-report
 
-      - name: Upload coverage report
+      - name: Upload coverage report as artifact
         if: success()
         uses: actions/upload-artifact@v4
         with:
