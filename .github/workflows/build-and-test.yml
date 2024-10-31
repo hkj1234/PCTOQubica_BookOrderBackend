@@ -65,7 +65,7 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: TestResult/*/coverage.cobertura.xml
           flags: unittests
-          name: code-coverage-report
+          name: coverage-report
 
       - name: Upload coverage report as artifact
         if: success()
