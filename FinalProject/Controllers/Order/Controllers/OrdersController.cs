@@ -6,7 +6,7 @@ using FinalProject.Controllers.Order.Entities;
 using FinalProject.Core.Book.Exceptions;
 using FinalProject.Core.Customer.Exceptions;
 using FinalProject.Core.Order.Entities;
-using FinalProject.Core.Order.Exeptions;
+using FinalProject.Core.Order.Exceptions;
 using FinalProject.Core.Order.Interfaces;
 using FinalProject.Database.Order.Entities;
 using Microsoft.AspNetCore.Authorization;

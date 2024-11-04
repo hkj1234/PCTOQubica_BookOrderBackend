@@ -1,4 +1,4 @@
-﻿namespace FinalProject.Core.Order.Exeptions
+﻿namespace FinalProject.Core.Order.Exceptions
 {
     public class NegativeOrNullAmountException : Exception
     {

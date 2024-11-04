@@ -3,7 +3,7 @@ using FinalProject.Core.BookCategory.Interfaces;
 using FinalProject.Core.Customer.Exceptions;
 using FinalProject.Core.Customer.Interfaces;
 using FinalProject.Core.Order.Entities;
-using FinalProject.Core.Order.Exeptions;
+using FinalProject.Core.Order.Exceptions;
 using FinalProject.Core.Order.Interfaces;
 using FinalProject.Database.Order;
 using FinalProject.Database.Order.Entities;
