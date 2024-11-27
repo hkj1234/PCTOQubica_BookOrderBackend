@@ -8,46 +8,46 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace FinalProject.Database.Migrations
+namespace FinalProject.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241022080217_Version1.0.2")]
-    partial class Version102
+    [Migration("20241123155644_Version1.0.0")]
+    partial class Version100
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.10")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+                .HasAnnotation("ProductVersion", "8.0.11")
+                .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+            MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
 
-            modelBuilder.Entity("FinalProject.Models.Author", b =>
+            modelBuilder.Entity("FinalProject.Database.Author.Entities.DBAuthor", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("AuthorName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
                     b.ToTable("Authors");
                 });
 
-            modelBuilder.Entity("FinalProject.Models.Book", b =>
+            modelBuilder.Entity("FinalProject.Database.Book.Entities.DBBook", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("AuthorId")
                         .HasColumnType("int");
@@ -57,7 +57,7 @@ namespace FinalProject.Database.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
@@ -68,44 +68,44 @@ namespace FinalProject.Database.Migrations
                     b.ToTable("Books");
                 });
 
-            modelBuilder.Entity("FinalProject.Models.BookCategory", b =>
+            modelBuilder.Entity("FinalProject.Database.BookCategory.Entities.DBBookCategory", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("CategoryName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
                     b.ToTable("BookCategories");
                 });
 
-            modelBuilder.Entity("FinalProject.Models.Customer", b =>
+            modelBuilder.Entity("FinalProject.Database.Customer.Entities.DBCustomer", b =>
                 {
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.HasKey("Email");
 
                     b.ToTable("Customers");
                 });
 
-            modelBuilder.Entity("FinalProject.Models.Order", b =>
+            modelBuilder.Entity("FinalProject.Database.Order.Entities.DBOrder", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("Amount")
                         .HasColumnType("int");
@@ -115,10 +115,10 @@ namespace FinalProject.Database.Migrations
 
                     b.Property<string>("CustomerEmail")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<DateTime>("OrderDateTime")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
 
@@ -129,15 +129,15 @@ namespace FinalProject.Database.Migrations
                     b.ToTable("Orders");
                 });
 
-            modelBuilder.Entity("FinalProject.Models.Book", b =>
+            modelBuilder.Entity("FinalProject.Database.Book.Entities.DBBook", b =>
                 {
-                    b.HasOne("FinalProject.Models.Author", "Author")
+                    b.HasOne("FinalProject.Database.Author.Entities.DBAuthor", "Author")
                         .WithMany()
                         .HasForeignKey("AuthorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FinalProject.Models.BookCategory", "BookCategory")
+                    b.HasOne("FinalProject.Database.BookCategory.Entities.DBBookCategory", "BookCategory")
                         .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -148,15 +148,15 @@ namespace FinalProject.Database.Migrations
                     b.Navigation("BookCategory");
                 });
 
-            modelBuilder.Entity("FinalProject.Models.Order", b =>
+            modelBuilder.Entity("FinalProject.Database.Order.Entities.DBOrder", b =>
                 {
-                    b.HasOne("FinalProject.Models.Book", "Book")
+                    b.HasOne("FinalProject.Database.Book.Entities.DBBook", "Book")
                         .WithMany()
                         .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FinalProject.Models.Customer", "Customer")
+                    b.HasOne("FinalProject.Database.Customer.Entities.DBCustomer", "Customer")
                         .WithMany()
                         .HasForeignKey("CustomerEmail")
                         .OnDelete(DeleteBehavior.Cascade)

@@ -19,12 +19,22 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//database
+//database SQL server
+/*
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+*/
+
+//database MySQL 
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseMySql(
+        builder.Configuration.GetConnectionString("DefaultConnection"),
+        new MySqlServerVersion(new Version(8, 0, 40))
+    )
+);
 
 // Configura JWT
-// Questo serve per contorllare se JWT è valido o no rispettando le seguente regole 
+// Questo serve per contorllare se JWT ?valido o no rispettando le seguente regole 
 #pragma warning disable 8602, 8604
 var tokenOptions = builder.Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 var key = Encoding.ASCII.GetBytes(tokenOptions.Secret);

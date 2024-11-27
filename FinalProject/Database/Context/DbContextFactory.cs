@@ -17,7 +17,8 @@ namespace FinalProject.Database.Context
             var connectionString = _configuration.GetConnectionString("DefaultConnection");
 
             optionsBuilder
-                .UseSqlServer(connectionString);
+                .UseMySql(connectionString, 
+                new MySqlServerVersion(new Version(8, 0, 40)));
 
             var dbContext = new ApplicationDbContext(optionsBuilder.Options);
 
